@@ -18,7 +18,7 @@ public class productPage {
 
     }
     public void inputEmail(){
-
+        System.out.println("Hello");
     }
     public void inputPassword(){
 
