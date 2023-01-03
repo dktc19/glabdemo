@@ -8,8 +8,8 @@ import org.testng.annotations.BeforeTest;
 import java.util.concurrent.TimeUnit;
 
 public class baseSetup {
-//    public String baseUrl = "https://glab-v2.khgc.dev/admin/dashboard";
-    public String baseUrl = "https://glab-v2.khgc.dev/";
+    public String baseUrl = "https://glab-v2.khgc.dev/admin/dashboard";
+//    public String baseUrl = "https://glab-v2.khgc.dev/";
     private static final String srcDir = System.getProperty("user.dir") + "/src\\main\\resources/";
     String driverPath = srcDir + "\\chromedriver.exe";
     public WebDriver driver;

@@ -2,6 +2,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -12,7 +13,8 @@ import java.util.concurrent.TimeUnit;
 
 public class Glab_Demo {
     public String baseUrl = "https://glab-v2.khgc.dev/admin/dashboard";
-    String driverPath = "D:\\seleniumChrome\\chromedriver.exe";
+    private static final String srcDir = System.getProperty("user.dir") + "/src\\main\\resources/";
+    String driverPath = srcDir + "\\chromedriver.exe";
     public WebDriver driver;
 
     @BeforeTest
@@ -31,33 +33,28 @@ public class Glab_Demo {
 
     @Test(priority = 1)
     public void Coupon() throws InterruptedException {
-        WebElement coupon = driver.findElement(By.xpath("//span[contains(text(),'Tiếp Thị')]"));
-        coupon.click();
-        WebElement crCoupon = driver.findElement(By.id("item8"));
-        crCoupon.click();
-        for (int i = 0; i < 2; i++) {
-            Thread.sleep(2000);
-            subCoupon(String.valueOf(i));
-        }
-    }
-
-    private void subCoupon(String stt) {
+        WebElement product = driver.findElement(By.xpath("//span[contains(text(),'Sản Phẩm')]"));
+        product.click();
+        WebElement addProduct = driver.findElement(By.xpath("//a[contains(text(),'Sản Phẩm')]"));
+        addProduct.click();
         WebElement clickCreate = driver.findElement(By.xpath("//a[contains(text(),'Tạo Mới')]"));
         clickCreate.click();
-        WebElement code = driver.findElement(By.id("sCode"));
-        code.sendKeys("skiet" + stt);
-        WebElement event = driver.findElement(By.xpath("//body/div[@id='container']/div[@id='content']/div[1]/div[1]/div[2]/form[1]/div[1]/div[1]/div[3]/div[1]/div[1]/button[1]"));
-        event.click();
-        WebElement subEvent = driver.findElement(By.xpath("//body/div[@id='container']/div[@id='content']/div[1]/div[1]/div[2]/form[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/a[3]/span[1]"));
-        subEvent.click();
-        WebElement limit = driver.findElement(By.id("sLimit"));
-        limit.sendKeys("10");
-        WebElement amount = driver.findElement(By.id("sAmount"));
-        amount.sendKeys("10");
-        WebElement btnCreate = driver.findElement(By.xpath("//button[contains(text(),'Tạo Mới')]"));
-        btnCreate.click();
-        driver.findElement(By.xpath("//button[contains(text(),'Cập Nhật')]")).isDisplayed();
-        WebElement btnCancel = driver.findElement(By.xpath("//a[contains(text(),'Hủy Bỏ')]"));
-        btnCancel.click();
+        WebElement btnX = driver.findElement(By.xpath("//body/div[4]/div[3]/div[2]/a[1]"));
+        btnX.click();
+        WebElement btnNext = driver.findElement(By.xpath("//a[contains(text(),'Next')]"));
+        btnNext.click();
+        Thread.sleep(2000);
+        Actions actions = new Actions(driver);
+        actions.moveToElement(btnNext).click().perform();
+        //Cách 1 để upload file ảnh
+        WebElement clickUpload = driver.findElement(By.name("thumbnail_image"));
+        clickUpload.sendKeys(srcDir + "\\kietgiay.png");
+        //clickUpload.sendKeys("C:\\Users\\Admin\\OneDrive\\Desktop\\Ảnh Glab\\kietgiay.png");
+        WebElement clickMutipleImg = driver.findElement(By.id("detailImagesInput"));
+        clickMutipleImg.sendKeys(srcDir + "\\kietgiay.png");
+        //Cách 2 để upload file ảnh
+
+
+
     }
 }
