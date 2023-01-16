@@ -1,8 +1,11 @@
 package pages_object.userLogin;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.*;
+
+import java.io.File;
+import java.io.IOException;
+
 
 public class userLogin {
     private WebDriver driver;
@@ -35,4 +38,12 @@ public class userLogin {
             System.out.println("Login Fail");
         }
     }
+//    public void ScreenShot() throws IOException {
+//        TakesScreenshot scrShot = ((TakesScreenshot) driver) ;
+//        File SrcFile = scrShot.getScreenshotAs(OutputType.FILE);
+//        File LinkImg = new File("D:\\Downloads\\test.png");
+//        FileUtils.copyFile(SrcFile,LinkImg);
+//    }
+
+
 }

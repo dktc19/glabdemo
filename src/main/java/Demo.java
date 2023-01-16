@@ -1,15 +1,15 @@
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
-import org.openqa.selenium.JavascriptExecutor;
 
 import javax.swing.*;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -31,13 +31,13 @@ public class Demo {
         driver.manage().window().maximize();
     }
     @Test(priority = 1)
-    public void Coupon() throws InterruptedException {
-        for (int i = 0; i<2;i++){
+    public void Coupon() throws InterruptedException, IOException {
+        for (int i = 0; i<1;i++){
             Thread.sleep(2000);
             subCoupon(String.valueOf(i));
         }
     }
-    private void subCoupon(String stt){
+    private void subCoupon(String stt) throws InterruptedException, IOException {
 //        String stt = null;
 //        String idCode = "tuankiet";
         WebElement coupon = driver.findElement(By.xpath("//span[contains(text(),'Tiếp Thị')]"));
@@ -48,14 +48,20 @@ public class Demo {
         clickCreate.click();
         WebElement code = driver.findElement(By.id("sCode"));
         code.sendKeys("tuankiet" + stt);
-        WebElement event = driver.findElement(By.xpath("//body/div[@id='container']/div[@id='content']/div[1]/div[1]/div[2]/form[1]/div[1]/div[1]/div[3]/div[1]/div[1]/button[1]"));
-        event.click();
-        WebElement subEvent = driver.findElement(By.xpath("//body/div[@id='container']/div[@id='content']/div[1]/div[1]/div[2]/form[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/a[3]/span[1]"));
-        subEvent.click();
-        WebElement limit = driver.findElement(By.id("sLimit"));
-        limit.sendKeys("10");
-        WebElement amount = driver.findElement(By.id("sAmount"));
-        amount.sendKeys("10");
+        Thread.sleep(2000);
+        code.sendKeys(Keys.ENTER);
+        TakesScreenshot scrShot = ((TakesScreenshot) driver) ;
+        File SrcFile = scrShot.getScreenshotAs(OutputType.FILE);
+        File LinkImg = new File("D:\\Downloads\\test.png");
+        FileUtils.copyFile(SrcFile,LinkImg);
+//        WebElement event = driver.findElement(By.xpath("//body/div[@id='container']/div[@id='content']/div[1]/div[1]/div[2]/form[1]/div[1]/div[1]/div[3]/div[1]/div[1]/button[1]"));
+//        event.click();
+//        WebElement subEvent = driver.findElement(By.xpath("//body/div[@id='container']/div[@id='content']/div[1]/div[1]/div[2]/form[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/a[3]/span[1]"));
+//        subEvent.click();
+//        WebElement limit = driver.findElement(By.id("sLimit"));
+//        limit.sendKeys("10");
+//        WebElement amount = driver.findElement(By.id("sAmount"));
+//        amount.sendKeys("10");
     }
 //    public void openWindow(){
 //        String mainWindow = driver.getWindowHandle();
