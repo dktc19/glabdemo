@@ -10,7 +10,7 @@ import utils.ScreenShot;
 import java.io.IOException;
 
 public class UserLoginTest extends baseSetup {
-
+    /**Hàm dụng*/
     public userLogin userLogin;
     public ScreenShot screenShot;
     @Test
