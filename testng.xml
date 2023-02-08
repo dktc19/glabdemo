@@ -3,7 +3,7 @@
 <suite name="All Test Suite">
     <test verbose="2" preserve-order="true" name="C:/Users/kietht/IdeaProjects/Demo">
         <classes>
-            <class name="bt5"/>
+            <class name="testcases.UserLoginTest"/>
         </classes>
     </test>
 </suite>

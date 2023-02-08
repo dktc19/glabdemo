@@ -28,22 +28,9 @@ public class userLogin {
         WebElement btnLogin = driver.findElement(By.xpath("//button[contains(text(),'Đăng Nhập')]"));
         btnLogin.click();
     }
-
-    public void verifyLogin(){
-        String actualPage = driver.getCurrentUrl();
-        String expectPage = "https://glab-v2.khgc.dev/";
-        if (actualPage == expectPage){
-            System.out.println("Login Successfully");
-        }else {
-            System.out.println("Login Fail");
-        }
+    public void quit(){
+        driver.quit();
     }
-//    public void ScreenShot() throws IOException {
-//        TakesScreenshot scrShot = ((TakesScreenshot) driver) ;
-//        File SrcFile = scrShot.getScreenshotAs(OutputType.FILE);
-//        File LinkImg = new File("D:\\Downloads\\test.png");
-//        FileUtils.copyFile(SrcFile,LinkImg);
-//    }
 
 
 }
